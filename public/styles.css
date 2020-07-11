@@ -10,6 +10,10 @@ body {
     flex-direction: column;
 }
 
+.explanation {
+    font-size: 14px;
+}
+
 .full-contain .topbar { 
     min-height: 64px;
     background: #1a1a1a;
