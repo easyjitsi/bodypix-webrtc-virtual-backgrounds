@@ -15,6 +15,7 @@ body {
     background: #1a1a1a;
     color: white;
     display: flex;
+    box-shadow: 0px 4px 10px #ff1d1dcf;
     justify-content: center;
     align-items: center;
 }

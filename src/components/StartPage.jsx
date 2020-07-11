@@ -46,7 +46,7 @@ class StartPage extends React.Component {
                 <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.currentPage == "page1"}>
                    <div className="full-contain">
                        <div className="topbar">
-                            <div className="title">Bodypix + WebRTC (Virtual Background POC) - Video Enabled</div>
+                            <div className="title">Bodypix + WebRTC = Virtual Backgrounds (Video Enabled)</div>
                        </div>
                        <div className="main-contain">
                             <div className="lhs">
