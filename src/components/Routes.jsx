@@ -9,10 +9,11 @@ class Routes extends React.Component {
     }
 
     render() {
-        return (<Router>
+        return (
+        <Router>
             <Switch>
-            <Route exact path={`${process.env.PUBLIC_URL + "/"}`} component={StartPage} />
-              <Route exact component={NotFoundPage} />
+                <Route exact path={`${process.env.PUBLIC_URL + "/"}`} component={StartPage} />
+                <Route exact component={NotFoundPage} />
             </Switch>
         </Router>);
     }

@@ -1,0 +1,135 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.full-contain { 
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-contain .topbar { 
+    min-height: 64px;
+    background: #1a1a1a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-contain .main-contain { 
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 64px;
+}
+
+.mgrid {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.full-contain .main-contain .lhs { 
+    padding: 30px;
+}
+
+.c-title {
+    margin-bottom: 15px;
+    margin-top: -5px;
+}
+
+.full-contain .main-contain .lhs .camera-zone { 
+    background: black;
+    width: 532px;
+    height: 400px;
+}
+
+.full-contain .main-contain .lhs .camera-zone canvas { 
+
+}
+
+.mr-title {
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.full-contain .main-contain .lhs .more-details { 
+    margin-top: 15px;
+    width: 480px;
+}
+
+.full-contain .main-contain .rhs { 
+    width: 100%;
+    margin-top: 32px;
+    margin-left: 42px;
+}
+
+.full-contain .main-contain .rhs .checking-area { 
+
+}
+
+.full-contain .main-contain .rhs  { 
+
+}
+
+.video-up {
+    margin-top: 20px;
+}
+
+.title-b {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.full-contain .main-contain .rhs  .selectable { 
+    width: 240px;
+    object-fit: cover;
+    height: 140px;
+    cursor: pointer;
+    margin-right: 15px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.full-contain .main-contain .rhs  .selectable img { 
+    width: 100%;
+    height: 100%;
+}
+
+.full-contain .main-contain .rhs  .selectable video { 
+    width: 100%;
+    height: 100%;
+}
+.selected-bar {
+    background: #000000c2;
+    color: white;
+    padding: 4px;
+    text-align: center;
+    position: absolute;
+    width: 232px;
+}
+
+.full-contain .main-contain .rhs .choose-a-video { 
+
+}
+
+.footer-final {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.footer-final img {
+    width: 100px;
+}
+
+.cpr {
+    margin-top: -10px;
+    margin-bottom: 64px;
+}
