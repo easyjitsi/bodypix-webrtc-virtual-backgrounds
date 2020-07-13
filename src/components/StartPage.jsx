@@ -4,6 +4,8 @@ import {Animated} from "react-animated-css";
 import Webcam from "react-webcam";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import BodyPix from  '@tensorflow-models/body-pix';
+
 
 class StartPage extends React.Component {
 
@@ -16,6 +18,8 @@ class StartPage extends React.Component {
     }
 
     webcamRef =  null;
+
+   
 
     componentDidMount() {
         console.dir(this.webcamRef)
@@ -62,7 +66,7 @@ class StartPage extends React.Component {
                                 </div>
                                 <canvas id="personCanvas">
 
-                                </canvas>
+                            </canvas>
                                 <div className="more-details">
                                     <div className="mr-title">More Info</div>
                                     <div className="explanation">
