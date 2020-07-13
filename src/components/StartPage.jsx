@@ -7,19 +7,56 @@ import Checkbox from '@material-ui/core/Checkbox';
 import BodyPix from  '@tensorflow-models/body-pix';
 
 
+class WebcamCapture extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
+        this.state=
+        {
+            net:null,
+        }
+    }
+
+    webCamCapture()
+    {
+        BodyPix.load({
+            architecture: 'MobileNetV1',
+            outputStride: 16,
+            multiplier: 0.75,
+            quantBytes: 2
+        }).catch(error=>{console.log(error)}).then(netObj=>{
+            this.setState({net:netObj});
+        });
+    }
+
+    render()
+    {
+        return (
+            <Webcam 
+            audio={false}
+            height={400}
+            ref={ (rfid) => { this.webcamRef = rfid}}
+            screenshotFormat="image/jpeg"
+            width={532}
+            />
+        )
+    }
+}
+
+
 class StartPage extends React.Component {
 
     constructor(props){
         super(props);
         this.state  = {
             currentPage: "page1",
-            shouldApplyFeature: false
+            shouldApplyFeature: false,
+            net:null
         }
     }
 
     webcamRef =  null;
-
-   
 
     componentDidMount() {
         console.dir(this.webcamRef)
@@ -41,7 +78,8 @@ class StartPage extends React.Component {
     } 
 
     render() {
-        return (    
+        return ( 
+          
         <div className="App">
             <div className="p-overlay"></div>
             {
@@ -56,13 +94,8 @@ class StartPage extends React.Component {
                             <div className="lhs">
                                 <div className="c-title">Default Camera Source</div>
                                 <div className="camera-zone">
-                                    <Webcam
-                                            audio={false}
-                                            height={400}
-                                            ref={ (rfid) => { this.webcamRef = rfid}}
-                                            screenshotFormat="image/jpeg"
-                                            width={532}
-                                    />
+                                   <WebcamCapture/>
+
                                 </div>
                                 <canvas id="personCanvas">
 
