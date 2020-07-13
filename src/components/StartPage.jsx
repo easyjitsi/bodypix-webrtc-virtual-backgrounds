@@ -115,6 +115,9 @@ class StartPage extends React.Component {
                                                 <source src="https://giant.gfycat.com/AlarmingGreedyAndeancondor.mp4" type="video/mp4" />
                                                 <source src="https://thumbs.gfycat.com/AlarmingGreedyAndeancondor-mobile.mp4" type="video/mp4" />
                                             </video>
+                                            <canvas id="personCanvas">
+
+                                            </canvas>
                                         </div>
                                     </div>
                                 </div>
