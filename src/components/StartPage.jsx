@@ -60,6 +60,9 @@ class StartPage extends React.Component {
                                             width={532}
                                     />
                                 </div>
+                                <canvas id="personCanvas">
+
+                                </canvas>
                                 <div className="more-details">
                                     <div className="mr-title">More Info</div>
                                     <div className="explanation">
@@ -115,9 +118,7 @@ class StartPage extends React.Component {
                                                 <source src="https://giant.gfycat.com/AlarmingGreedyAndeancondor.mp4" type="video/mp4" />
                                                 <source src="https://thumbs.gfycat.com/AlarmingGreedyAndeancondor-mobile.mp4" type="video/mp4" />
                                             </video>
-                                            <canvas id="personCanvas">
-
-                                            </canvas>
+                                           
                                         </div>
                                     </div>
                                 </div>
