@@ -5,6 +5,7 @@ import Webcam from "react-webcam";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import BodyPix from  '@tensorflow-models/body-pix';
+import BodyPixEnabledWebCam from "./BodyPixEnabledWebCam";
 
 
 // class WebcamCapture extends React.Component
@@ -52,7 +53,13 @@ class StartPage extends React.Component {
         this.state  = {
             currentPage: "page1",
             shouldApplyFeature: false,
-            net:null
+            net:null,
+            config: {
+                architecture: 'MobileNetV1',
+                outputStride: 16,
+                multiplier: 0.75,
+                quantBytes: 2
+            }
         }
     }
 
@@ -85,7 +92,7 @@ class StartPage extends React.Component {
             {
                 this.state.currentPage == "page1"
                 &&
-                <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.currentPage == "page1"}>
+
                    <div className="full-contain">
                        <div className="topbar">
                             <div className="title">Bodypix + WebRTC = Virtual Backgrounds (Video Enabled)</div>
@@ -94,18 +101,23 @@ class StartPage extends React.Component {
                             <div className="lhs">
                                 <div className="c-title">Default Camera Source</div>
                                 <div className="camera-zone">
-                                <Webcam 
+                                <BodyPixEnabledWebCam
+                                width={532}
+                                height={400}
+                                bodypixConfig={this.state.config}
+                                id={"bodycam"}
+                                title={"bodypix_tensorflow"}
+                                >
+
+                                </BodyPixEnabledWebCam>
+                                {/* <Webcam 
                                 audio={false}
                                 height={400}
                                 ref={ (rfid) => { this.webcamRef = rfid}}
                                 screenshotFormat="image/jpeg"
                                 width={532}
-                                />
-
+                                /> */}
                                 </div>
-                                <canvas id="personCanvas">
-
-                            </canvas>
                                 <div className="more-details">
                                     <div className="mr-title">More Info</div>
                                     <div className="explanation">
@@ -114,7 +126,7 @@ class StartPage extends React.Component {
                                 </div>
                             </div>
                             <div className="rhs">
-                                <div className="checking-area">
+                                {/* <div className="checking-area">
                                 <FormControlLabel
                                     control={
                                     <Checkbox
@@ -126,7 +138,7 @@ class StartPage extends React.Component {
                                     }
                                     label="Enable Virtual Background"
                                 />
-                                </div>
+                                </div> */}
                                 <div className="choose-an-image">
                                     <div className="title-b">Choose an Image</div>
                                     <div className="mgrid">
@@ -174,7 +186,6 @@ class StartPage extends React.Component {
                             </div>
                        </div>
                    </div>
-                </Animated>
             }
         </div>
     );
