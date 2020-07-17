@@ -173,6 +173,7 @@ body {
 
 .background-replacement img {
     width: 100%;
+    object-fit: cover;
 }
 
 .background-replacement video {
