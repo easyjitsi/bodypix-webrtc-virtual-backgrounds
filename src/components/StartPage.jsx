@@ -101,6 +101,9 @@ class StartPage extends React.Component {
                             <div className="lhs">
                                 <div className="c-title">Default Camera Source</div>
                                 <div className="camera-zone">
+                                    <div class="background-replacement">
+                                        <img src="/img/backgrounds/bg1.jpg" alt="Windows XP Background"/>
+                                    </div>
                                 <BodyPixEnabledWebCam
                                 width={532}
                                 height={400}

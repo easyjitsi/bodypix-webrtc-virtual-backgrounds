@@ -164,3 +164,17 @@ body {
     transform: scale(-1, 1);
     filter: FlipH;
 }
+
+.background-replacement {
+    position: absolute;
+    width: 532px;
+    height: 400px;
+}
+
+.background-replacement img {
+    width: 100%;
+}
+
+.background-replacement video {
+    width: 100%;
+}

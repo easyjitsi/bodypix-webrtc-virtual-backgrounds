@@ -26,23 +26,31 @@ componentDidMount() {
     // getting access to webcam
     navigator.mediaDevices
     .getUserMedia({video: true})
-    .then(stream => {this.videoTag.current.srcObject = stream
-        if (this.state.net==null)
-        {
-            bodyPix.load({
-                architecture: 'MobileNetV1',
-                outputStride: 16,
-                multiplier: 0.75,
-                quantBytes: 2
-            })
-            .catch(error => {
-                console.log(error);
-            })
-            .then(objNet => {
-                this.setState({net:objNet});  
-                this.detectBody(); 
-            });
-        }
+    .then(stream => {
+        this.videoTag.current.srcObject = stream
+        console.log("See the content")
+        console.dir(this.videoTag)
+        
+        this.videoTag.current.onloadeddata = (event) => {
+            console.log('Yay! The readyState just increased to  ' + 
+                'HAVE_CURRENT_DATA or greater for the first time.');
+                if (this.state.net==null)
+                {
+                    bodyPix.load({
+                        architecture: 'MobileNetV1',
+                        outputStride: 16,
+                        multiplier: 0.75,
+                        quantBytes: 2
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+                    .then(objNet => {
+                        this.setState({net:objNet});  
+                        this.detectBody(); 
+                    });
+                }
+        };
     })
     .catch((error)=>{console.log(error)});
 }
