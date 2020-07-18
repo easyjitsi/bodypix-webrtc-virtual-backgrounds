@@ -21,7 +21,8 @@ class StartPage extends React.Component {
             },
             slowConfig: {
                 architecture: 'ResNet50',
-                outputStride: 32,
+                outputStride: 16,
+                multiplier: 1,
                 quantBytes: 2
             },
             selected_resource: {
@@ -263,10 +264,10 @@ class StartPage extends React.Component {
                             </div>
                        </div>
                        <div className="footer-final">
-                            <div className="brand">
+                            <a className="brand">
                                 <img src="/svg/logo.svg" alt=""/>
                                 <div className="cpr">© 2020 EasyJitsi</div>
-                            </div>
+                            </a>
                        </div>
                    </div>
             }
