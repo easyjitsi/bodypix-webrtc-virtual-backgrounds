@@ -63,7 +63,7 @@ detectBody()
    
     this.state.net.segmentPerson(this.videoTag.current,{
         flipHorizontal:true,
-        internalResolution:'medium',
+        internalResolution:'low',
         segmentationThreshold:0.4
     }).catch(err=>{console.log(err)}).then(personsegmentation=>{
             this.drawBody(personsegmentation);
