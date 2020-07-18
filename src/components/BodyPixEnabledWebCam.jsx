@@ -35,19 +35,19 @@ componentDidMount() {
             console.log('Yay! The readyState just increased to  ' + 
                 'HAVE_CURRENT_DATA or greater for the first time.');
                 if (this.state.net==null)
-                {
-                    bodyPix.load({
-                        architecture: 'MobileNetV1',
-                        outputStride: 16,
-                        multiplier: 0.75,
-                        quantBytes: 2
-                    })
+                {   
+                    console.log("Loading this config")
+                    console.dir(this.props.bodypixConfig);
+                    bodyPix.load(this.props.bodypixConfig)
                     .catch(error => {
                         console.log(error);
+                        this.props.onError();
                     })
                     .then(objNet => {
+                       
                         this.setState({net:objNet});  
                         this.detectBody(); 
+                        this.props.onLoaded(this.props.bodypixConfig);
                     });
                 }
         };
@@ -63,8 +63,8 @@ detectBody()
    
     this.state.net.segmentPerson(this.videoTag.current,{
         flipHorizontal:true,
-        internalResolution:'low',
-        segmentationThreshold:0.3
+        internalResolution:'medium',
+        segmentationThreshold:0.33
     }).catch(err=>{console.log(err)}).then(personsegmentation=>{
             this.drawBody(personsegmentation);
     });

@@ -2,6 +2,7 @@ import React from "react";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import BodyPixEnabledWebCam from "./BodyPixEnabledWebCam";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class StartPage extends React.Component {
 
@@ -10,11 +11,17 @@ class StartPage extends React.Component {
         this.state  = {
             currentPage: "page1",
             shouldApplyFeature: false,
+            isLoading: true,
             net:null,
-            config: {
+            fastConfig: {
                 architecture: 'MobileNetV1',
-                outputStride: 16,
+                outputStride: 8,
                 multiplier: 0.75,
+                quantBytes: 2
+            },
+            slowConfig: {
+                architecture: 'ResNet50',
+                outputStride: 32,
                 quantBytes: 2
             },
             selected_resource: {
@@ -150,10 +157,31 @@ class StartPage extends React.Component {
                                             </video>
                                         }
                                     </div>
+                                    {
+                                        this.state.isLoading == true && 
+                                        <div className="loading-area">
+                                            <CircularProgress color="inherit" />
+                                            <div className="message-loading">Loading BodyPix Model</div>
+                                        </div>
+                                    }
                                     <BodyPixEnabledWebCam
+                                        onLoaded={ (config) => {
+                                            console.log("Config loaded is ")
+                                            console.dir(config);
+                                            this.setState({
+                                                ...this.state,
+                                                isLoading: false
+                                            });
+                                        }}
+                                        onError={() => {
+                                            this.setState({
+                                                ...this.state,
+                                                isLoading: false
+                                            });
+                                        }}
                                         width={532}
                                         height={400}
-                                        bodypixConfig={this.state.config}
+                                        bodypixConfig={this.state.slowConfig}
                                         id={"bodycam"}
                                         title={"bodypix_tensorflow"}
                                     >
