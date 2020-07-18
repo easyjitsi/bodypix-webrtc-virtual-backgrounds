@@ -193,6 +193,9 @@ class StartPage extends React.Component {
                                     <div className="explanation">
                                         This is a Full demo built with Bodypix from TensorFlow in conjunction with WebRTC and some basic HTML5 Canvas masking to remove your active background from a WebCAM feed and replace it with a "Virtual Background" as seen on Zoom.
                                     </div>
+                                    <div className="join-part">
+                                        <a href="https://t.me/easyjitsisuppport">Join our Jitsi Support Group</a>
+                                    </div>
                                 </div>
                             </div>
                             <div className="rhs">
