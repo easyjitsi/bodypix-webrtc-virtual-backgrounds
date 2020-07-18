@@ -267,7 +267,7 @@ class StartPage extends React.Component {
                             </div>
                        </div>
                        <div className="footer-final">
-                            <a className="brand">
+                            <a className="brand" href="http://easyjitsi.com/">
                                 <img src="/svg/logo.svg" alt=""/>
                                 <div className="cpr">© 2020 EasyJitsi</div>
                             </a>
