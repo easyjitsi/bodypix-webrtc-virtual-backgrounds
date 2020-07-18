@@ -1,50 +1,7 @@
 import React from "react";
-import { reactLocalStorage } from 'reactjs-localstorage';
-import {Animated} from "react-animated-css";
-import Webcam from "react-webcam";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import BodyPix from  '@tensorflow-models/body-pix';
 import BodyPixEnabledWebCam from "./BodyPixEnabledWebCam";
-
-
-// class WebcamCapture extends React.Component
-// {
-//     constructor(props)
-//     {
-//         super(props);
-//         this.state=
-//         {
-//             net:null,
-//         }
-//     }
-
-//     webCamCapture()
-//     {
-//         BodyPix.load({
-//             architecture: 'MobileNetV1',
-//             outputStride: 16,
-//             multiplier: 0.75,
-//             quantBytes: 2
-//         }).catch(error=>{console.log(error)}).then(netObj=>{
-//             this.setState({net:netObj});
-//         });
-//     }
-
-//     render()
-//     {
-//         return (
-//             <Webcam 
-//             audio={false}
-//             height={400}
-//             ref={ (rfid) => { this.webcamRef = rfid}}
-//             screenshotFormat="image/jpeg"
-//             width={532}
-//             />
-//         )
-//     }
-// }
-
 
 class StartPage extends React.Component {
 
@@ -59,11 +16,97 @@ class StartPage extends React.Component {
                 outputStride: 16,
                 multiplier: 0.75,
                 quantBytes: 2
-            }
+            },
+            selected_resource: {
+                url: "/img/backgrounds/bg1.jpg",
+                selected: true
+            },
+            selected_resource_type: "image",
+            images: [
+                {
+                    url: "/img/backgrounds/bg1.jpg",
+                    selected: true
+                },
+                {
+                    url: "/img/backgrounds/bg2.jpg",
+                    selected: false
+                },
+                {
+                    url: "/img/backgrounds/bg3.jpg",
+                    selected: false
+                },
+                {
+                    url: "/img/backgrounds/bg4.jpg",
+                    selected: false
+                },
+                {
+                    url: "/img/backgrounds/bg5.jpg",
+                    selected: false
+                },
+                {
+                    url: "/img/backgrounds/bg6.jpg",
+                    selected: false
+                }
+
+            ],
+            videos: [
+                {
+                    url: "/videos/video1.mp4",
+                    selected: false
+                }
+            ]
         }
     }
 
     webcamRef =  null;
+
+    selectImage(image, index){
+        this.deselectAllImages();
+        this.deselectAllVideos();
+        let images = this.state.images;
+        images[index].selected = true;
+        this.setState({
+            ...this.state,
+            images: images,
+            selected_resource: image,
+            selected_resource_type: "image"
+        })
+    }
+
+    selectVideo(video, index){
+        this.deselectAllVideos();
+        this.deselectAllImages();
+        let videos = this.state.videos;
+        videos[index].selected = true;
+        this.setState({
+            ...this.state,
+            videos: videos,
+            selected_resource: video,
+            selected_resource_type: "video"
+        })
+    }
+
+    deselectAllVideos(){
+        let videos = this.state.videos;
+        for (let index = 0; index < videos.length; index++) {
+            videos[index].selected = false;
+        }
+        this.setState({
+            ...this.state,
+            videos: videos
+        })
+    }
+
+    deselectAllImages(){
+        let images = this.state.images;
+        for (let index = 0; index < images.length; index++) {
+            images[index].selected = false;
+        }
+        this.setState({
+            ...this.state,
+            images: images
+        })
+    }
 
     componentDidMount() {
         console.dir(this.webcamRef)
@@ -77,12 +120,6 @@ class StartPage extends React.Component {
             shouldApplyFeature: val.target.checked
         });
     }
-
-    localStorageExample(e){
-        e.preventDefault();
-        reactLocalStorage.setObject('userObj', {});
-        var userObj = reactLocalStorage.getObject('userObj');
-    } 
 
     render() {
         return ( 
@@ -102,24 +139,25 @@ class StartPage extends React.Component {
                                 <div className="c-title">Default Camera Source</div>
                                 <div className="camera-zone">
                                     <div class="background-replacement">
-                                        <img src="/img/backgrounds/bg1.jpg" alt="Windows XP Background"/>
+                                        {
+                                            this.state.selected_resource_type == "image" && 
+                                            <img src={this.state.selected_resource.url} />
+                                        }
+                                        {
+                                            this.state.selected_resource_type == "video" && 
+                                            <video class="video media" autoplay="" playsinline="" preload="auto" loop>
+                                                <source src={this.state.selected_resource.url} type="video/mp4" />
+                                            </video>
+                                        }
                                     </div>
-                                <BodyPixEnabledWebCam
-                                width={532}
-                                height={400}
-                                bodypixConfig={this.state.config}
-                                id={"bodycam"}
-                                title={"bodypix_tensorflow"}
-                                >
-
-                                </BodyPixEnabledWebCam>
-                                {/* <Webcam 
-                                audio={false}
-                                height={400}
-                                ref={ (rfid) => { this.webcamRef = rfid}}
-                                screenshotFormat="image/jpeg"
-                                width={532}
-                                /> */}
+                                    <BodyPixEnabledWebCam
+                                        width={532}
+                                        height={400}
+                                        bodypixConfig={this.state.config}
+                                        id={"bodycam"}
+                                        title={"bodypix_tensorflow"}
+                                    >
+                                    </BodyPixEnabledWebCam>
                                 </div>
                                 <div className="more-details">
                                     <div className="mr-title">More Info</div>
@@ -145,39 +183,53 @@ class StartPage extends React.Component {
                                 <div className="choose-an-image">
                                     <div className="title-b">Choose an Image</div>
                                     <div className="mgrid">
-                                        <div className="selectable selected you">
-                                            <div className="selected-bar">Currently Selected</div>
-                                            <img src="/img/backgrounds/bg1.jpg" alt="Windows XP Background"/>
-                                        </div>
-                                        <div className="selectable">
-                                            <img src="/img/backgrounds/bg2.jpg" alt="Windows XP Background ALT"/>
-                                        </div>
-                                        <div className="selectable">
-                                            <img src="/img/backgrounds/bg3.jpg" alt="Windows XP Background ALT"/>
-                                        </div>
-                                        <div className="selectable">
-                                            <img src="/img/backgrounds/bg4.jpg" alt="Windows XP Background ALT"/>
-                                        </div>
-                                        <div className="selectable">
-                                            <img src="/img/backgrounds/bg5.jpg" alt="Windows XP Background ALT"/>
-                                        </div>
-                                        <div className="selectable">
-                                            <img src="/img/backgrounds/bg6.jpg" alt="Windows XP Background ALT"/>
-                                        </div>
+                                        {
+                                            this.state.images.map ((item, index) => {
+                                                if(item.selected == true){
+                                                    return (
+                                                        <div className="selectable selected you" onClick={() => { this.selectImage(item, index)}}>
+                                                            <div className="selected-bar">Currently Selected</div>
+                                                            <img src={item.url} />
+                                                        </div>
+                                                    );
+                                                }
+                                                else {
+                                                    return (
+                                                        <div className="selectable you" onClick={() => { this.selectImage(item, index)}}>
+                                                            <img src={item.url} />
+                                                        </div>
+                                                    );
+                                                }
+                                            })
+                                        }
                                     </div>
                                 </div>
                                 <div className="choose-a-video">
                                     <div className="title-b video-up">Choose a Video</div>
                                     <div className="mgrid">
-                                        <div className="selectable selected you">
-                                            <video class="video media" alt="Spring Grass Field Video Background. Nature Video Background. Spring Video Background Spring Forest Sakura Video Background Sakura Tree Nature Video Background HD Grass Field Grass Free Video Background HD Cherry blossom tree Cherry Blossom Forest GIF" autoplay="" playsinline="" preload="auto" poster="https://thumbs.gfycat.com/AlarmingGreedyAndeancondor-mobile.jpg" loop>
-                                                <source src="https://thumbs.gfycat.com/AlarmingGreedyAndeancondor-mobile.mp4" type="video/mp4" />
-                                                <source src="https://giant.gfycat.com/AlarmingGreedyAndeancondor.webm" type="video/webm" />
-                                                <source src="https://giant.gfycat.com/AlarmingGreedyAndeancondor.mp4" type="video/mp4" />
-                                                <source src="https://thumbs.gfycat.com/AlarmingGreedyAndeancondor-mobile.mp4" type="video/mp4" />
-                                            </video>
-                                           
-                                        </div>
+                                    {
+                                            this.state.videos.map ((item, index) => {
+                                                if(item.selected == true){
+                                                    return (
+                                                        <div className="selectable selected you" onClick={() => { this.selectVideo(item, index)}}>
+                                                            <div className="selected-bar">Currently Selected</div>
+                                                            <video class="video media" autoplay="" playsinline="" preload="auto" loop>
+                                                                <source src={item.url} type="video/mp4" />
+                                                            </video>
+                                                        </div>
+                                                    );
+                                                }
+                                                else {
+                                                    return (
+                                                        <div className="selectable you" onClick={() => { this.selectVideo(item, index)}}>
+                                                            <video class="video media" autoplay="" playsinline="" preload="auto" loop>
+                                                                <source src={item.url} type="video/mp4" />
+                                                            </video>
+                                                        </div>
+                                                    );
+                                                }
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
