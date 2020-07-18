@@ -182,7 +182,7 @@ class StartPage extends React.Component {
                                         }}
                                         width={532}
                                         height={400}
-                                        bodypixConfig={this.state.slowConfig}
+                                        bodypixConfig={this.state.fastConfig}
                                         id={"bodycam"}
                                         title={"bodypix_tensorflow"}
                                     >
