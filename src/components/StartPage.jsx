@@ -213,6 +213,17 @@ class StartPage extends React.Component {
                                 />
                                 </div> */}
                                 <div className="choose-an-image">
+                                    <div>
+                                        {/* <a href="https://jibrisondemand.com/"> */}
+                                            <div class="carbon-example flex-wrapper" style={{marginBottom: "15px"}}>
+                                            <img src="https://jibrisondemand.com/assets/images/logo-white.svg" alt="JibrisOnDemand" style={{height: "128px", background: "#000"}} />
+                                            <div class="inner-wrapper">
+                                                <p>Get Jibris for your Jitsi instances when you need it for a call.</p>
+                                                <p class="fine-print">Click to read more</p>
+                                            </div>
+                                        </div>
+                                        {/* </a> */}
+                                    </div>
                                     <div className="title-b">Choose an Image</div>
                                     <div className="mgrid">
                                         {
