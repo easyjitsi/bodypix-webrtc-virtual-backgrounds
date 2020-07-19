@@ -200,6 +200,11 @@ body {
     margin-top: 20px;
 }
 
+.clean-link {
+  text-decoration: none;
+  color: black;
+}
+
 .footer-final a {
     text-decoration: none!important;
     color: #000000d4!important;

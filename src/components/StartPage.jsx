@@ -214,7 +214,7 @@ class StartPage extends React.Component {
                                 </div> */}
                                 <div className="choose-an-image">
                                     <div>
-                                        {/* <a href="https://jibrisondemand.com/"> */}
+                                        <a class="clean-link" href="https://jibrisondemand.com/">
                                             <div class="carbon-example flex-wrapper" style={{marginBottom: "15px"}}>
                                             <img src="https://jibrisondemand.com/assets/images/logo-white.svg" alt="JibrisOnDemand" style={{height: "128px", background: "#000"}} />
                                             <div class="inner-wrapper">
@@ -222,7 +222,7 @@ class StartPage extends React.Component {
                                                 <p class="fine-print">Click to read more</p>
                                             </div>
                                         </div>
-                                        {/* </a> */}
+                                        </a>
                                     </div>
                                     <div className="title-b">Choose an Image</div>
                                     <div className="mgrid">
