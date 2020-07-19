@@ -3,6 +3,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import BodyPixEnabledWebCam from "./BodyPixEnabledWebCam";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import FPSStats from "react-fps-stats";
 
 class StartPage extends React.Component {
 
@@ -146,6 +147,7 @@ class StartPage extends React.Component {
                             <div className="lhs">
                                 <div className="c-title">Default Camera Source</div>
                                 <div className="camera-zone">
+                                    <FPSStats style={{position: "absolute"}} />
                                     <div class="background-replacement">
                                         {
                                             this.state.selected_resource_type == "image" && 
@@ -182,7 +184,7 @@ class StartPage extends React.Component {
                                         }}
                                         width={532}
                                         height={400}
-                                        bodypixConfig={this.state.fastConfig}
+                                        bodypixConfig={this.state.slowConfig}
                                         id={"bodycam"}
                                         title={"bodypix_tensorflow"}
                                     >

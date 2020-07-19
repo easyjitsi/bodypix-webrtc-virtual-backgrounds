@@ -49,8 +49,12 @@ body {
     background: black;
     width: 532px;
     height: 400px;
+    position: relative;
 }
 
+.camera-zone :first-child {
+  position: absolute!important;
+}
 .full-contain .main-contain .lhs .camera-zone canvas { 
 
 }
@@ -196,8 +200,10 @@ body {
     color: white;
 }
 
+
+
 .message-loading {
-    margin-top: 20px;
+    margin-top: 90px;
 }
 
 .clean-link {
